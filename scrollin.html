@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content="initial-scale=1">
+    <title>I.O API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">\
+    <style>
+    body {
+        background: rgb(10, 20, 30);
+        overflow-y: hidden;
+    }
+
+    .mycontainer {
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        height: 100vh;
+        scroll-behavior: smooth;
+    }
+
+    .circle {
+        margin: auto;
+        margin-top: 300px;
+        margin-bottom: 500px;
+        width: 300px;
+        height: 300px;
+        background: #40A2D8;
+        display: block;
+        border-radius: 50%;
+        overflow: hidden;
+        scroll-snap-align: center;
+    }
+    .circle:nth-child(even){
+        background: #FFDD95;
+    }
+</style>
+</head>
+
+<body>
+    <div class="mycontainer">
+
+        <span class="circle tokenOne animate__animated">
+            <img src="https://cdn3d.iconscout.com/3d/free/thumb/free-long-hair-woman-9606392-7766937.png" alt="" width="100%">
+        </span>
+        <span class="circle tokenTwo animate__animated">
+            <img src="https://cdn3d.iconscout.com/3d/free/thumb/free-bald-hair-man-with-beanie-hat-9606385-7766930.png" alt="" width="100%">
+        </span>
+        <span class="circle tokenThree animate__animated">
+            <img src="https://cdn3d.iconscout.com/3d/free/thumb/free-dreadlocked-man-9606395-7766940.png" alt="" width="100%">
+        </span>
+        <span class="circle tokenFour animate__animated">
+            <img src="https://cdn3d.iconscout.com/3d/free/thumb/free-curly-hair-man-9606398-7766943.png" alt="" width="100%">
+        </span>
+    </div>
+
+
+    <script>
+        const elements = document.querySelectorAll('.circle');
+        let tclass = ['tokenOne', 'tokenTwo', 'tokenThree', 'tokenFour'];
+        let animations = ['animate__rubberBand', 'animate__swing', 'animate__flip', 'animate__tada'];
+        
+        const options = {
+            /*root: null,*/
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver(handleio, options);
+
+        function handleio(entries) {
+            entries.forEach((entry) => {
+                let intsc = entry.isIntersecting;
+                let token = entry.target.classList;
+                
+                for (i = 0; i < 4; i++) {
+                    if (token.contains(tclass[i]) && intsc) {
+                        token.toggle(animations[i]);
+                    } else {
+                        token.remove(animations[i]);
+                    }
+                }
+            })
+        }
+        elements.forEach(e => {
+            observer.observe(e);
+
+        })
+    </script>
+</body>
+
+</html>
