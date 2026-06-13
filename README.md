@@ -1,2 +1,1 @@
-# Javascript Practice - MINI DEMO Projects
-
+# Javascript Practice - Snippets
