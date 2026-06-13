@@ -1,2 +1,2 @@
-# stms
-Student Management System in Laravel 
+# Javascript Practice - MINI DEMO Projects
+
